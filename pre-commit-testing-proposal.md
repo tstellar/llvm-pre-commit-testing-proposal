@@ -1,18 +1,5 @@
 # Mandatory pre-commit testing for LLVM
 
-*   Proposal: [LP-0123](link to the file on github when it lands)
-*   Author(s): Tom Stellard, , Author 2, ...
-*   Review Managers: TBD1, TBD2[, TBD3, TBD4]
-*   Status: [WIP, Active review (date...date), Accepted, Rejected, Returned for revision, etc.]
-
-_During the review process, add the following fields as needed:_
-
-*   Pitch Thread: [1](url for discussion) [2](url for discussion)
-*   Decision Notes: Rationale, Additional Commentary
-*   Previous Revision: [1](url for previous significant revision)
-*   Previous Proposal: LP-0012
-
-
 ## Introduction
 
 This is a proposal to create mandatory pre-commit tests for the LLVM project.  The goals
