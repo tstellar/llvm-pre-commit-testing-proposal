@@ -2,10 +2,10 @@
 
 ## Introduction
 
-This is a proposal to create mandatory pre-commit tests for the LLVM project.  The goals
+This is a proposal to define mandatory pre-commit tests for the LLVM project.  The goals
 of this proposal are:
 
-1. Define a list of criteria the mandatory pre-commit tests must meet to allow
+1. Define a list of criteria that mandatory pre-commit tests must meet to allow
    for new tests to be added in the future without requiring a formal proposal.
 
 2. Define an initial set of specific tests to install as mandatory pre-commit
@@ -30,7 +30,7 @@ interfere with `git bisect`.
 * Must provide additional value compared to the existing tests.
 
 In order to be added as a mandatory pre-commit test, a test must be
-used as an non-mandatory pre-commit test for at least 1 month. A
+used as a non-mandatory pre-commit test for at least 1 month. A
 non-mandatory pre-commit test is a test that runs for every
 phabricator review, but does block commits to the repository.
 
