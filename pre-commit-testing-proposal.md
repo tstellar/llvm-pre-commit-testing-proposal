@@ -27,7 +27,8 @@ interfere with `git bisect`.
 
 1. Criteria for adding pre-commit tests:
 
-* 20 minutes run-time or less
+* Build and test every commit on master in 20 minutes run-time or less and 
+  10 minutes or less queuing time.
 * At most 1 false positive (meaning the test fails when there is actually no
   problem) per week.
 * Must provide additional value compared to the existing pre-commit tests.
@@ -53,26 +54,63 @@ With the refactoring of the pre-merge testing infrastructure on Buildkite,
 we can use this infrastructure to add additional checks and platforms.
 
 TODO: How to implement these tests and integrate them into phabricator/github.
+TODO: Which CMake flags do we choose?
+
 
 ## Impact On Other Projects
 
+As fewer bugs slip into the master branch, it would be easier for other projects
+to base their work on master.
+
 ## Frequently Asked Questions
 
-* How is this enforced on a tool level?
+### How is this enforced on a tool level?
 
 Tool support is outside of the scope of this proposal. We do not have an 
 infrastructure at the moment that can prevent merging of broken commits. 
 
-* How does this relate to GitHub Pull Requests?
+### How does this relate to GitHub Pull Requests?
 
 Tool support is outside of the scope of this proposal. However GitHub Pull 
 Requests would be one option of enforcing this.
 
-* How about creating a "stable" branch?
+### How about creating a "stable" branch?
 
 Tool support is outside the scope of this proposal. However we could create 
 a CI system that automatically merges the `master` branch to a `stable` branch
 whenever all pre-merge tests are passing at the moment.
+
+### How to recover from a broken master?
+
+As today, in case someone broke the build/tests, the commit can be reverted by
+anyone. 
+
+### Can we auto-revert broken commits?
+
+Tool support is outside the scope of this proposal. However automatic reverts
+would be an option to enforce this in a setup where we cannot prevent broken
+commits to be pushed to master in the first place.
+
+### But I *really* need to commit this *now*!
+
+There should always be a solution to push a commit to the master branch for
+special situations, e.g. to revert a broken build. However the usage of this
+shall be monitored and reported (e.g. automatic email).
+
+### What happens if one of the testing machines is down?
+
+People can commit as if this machine never existed. Once the machines is 
+recovered, the machine is moved to optional per-merge testing until builds are 
+passing again before if is moved back to mandatory.
+
+### What happes if a testing machine becomes to slow?
+
+After discussion with the machine owner, it will be moved from mandatory to 
+optional pre-merge testing.
+
+### Who provides the testing machines?
+
+It's BYOM (bring your own machine), as with buildbots.
 
 ## Alternatives considered
 
